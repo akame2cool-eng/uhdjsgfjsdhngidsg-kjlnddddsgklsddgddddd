@@ -259,13 +259,13 @@ def run_authnet_check(card_number, month, year, cvv, proxy_url=None):
         for indicator in three_ds_indicators:
             if indicator in current_url.lower():
                 print(f"🎯 3DS URL DETECTED: {indicator}")
-                return "APPROVED - 3DS Authentication Required"
+                return "APPROVED", "3DS Authentication Required"
         
         # Check page content for 3DS
         for indicator in three_ds_indicators:
             if indicator in page_text_lower:
                 print(f"🎯 3DS CONTENT DETECTED: {indicator}")
-                return "APPROVED - 3DS Authentication Required"
+                return "APPROVED", "3DS Authentication Required"
         
         # Check for 3DS form elements
         three_ds_elements = [
@@ -285,7 +285,7 @@ def run_authnet_check(card_number, month, year, cvv, proxy_url=None):
                 for elem in elements:
                     if elem.is_displayed():
                         print(f"🎯 3DS ELEMENT FOUND: {element}")
-                        return "APPROVED - 3DS Authentication Required"
+                        return "APPROVED", "3DS Authentication Required"
             except:
                 continue
         
@@ -299,7 +299,7 @@ def run_authnet_check(card_number, month, year, cvv, proxy_url=None):
         for indicator in success_after_3ds:
             if indicator in current_url.lower() or indicator in page_text_lower:
                 print(f"🎯 SUCCESS AFTER 3DS: {indicator}")
-                return "APPROVED - Payment Successful (3DS Completed)"
+                return "APPROVED", "Payment Successful (3DS Completed)"
         
         # STRATEGY 1: EXTRACT EXACT ERROR MESSAGES FROM AUTHORIZE.NET
         authnet_error_patterns = [
