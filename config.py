@@ -1,4 +1,4 @@
-BOT_TOKEN = "8504416336:AAGPOgiL7XIqR7seVegN0gU5DTtTbFfoka0"
+BOT_TOKEN = "7739260475:AAEyHo47ABQ9kOAXMs8_zfN30-0k2F6cLbk"
 REQUEST_TIMEOUT = 800
 
 # Security settings
@@ -16,4 +16,5 @@ API_ENDPOINTS = {
     'crunchyroll': "http://135.148.14.197:8000/crunchyroll?email=",
     'bin_lookup': "https://drlabapis.onrender.com/api/bin?bin=",
     'cc_generator': "https://drlabapis.onrender.com/api/ccgenerator?bin="
+
 }
