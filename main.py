@@ -7,9 +7,10 @@ from bot_handlers import (
     disallow_command, list_allowed_command, check_card_command, stripe5_command, 
     shopify_command, crunchyroll_command, bin_command, gen_command, 
     gates_command, utility_command, button_handler, handle_messages, error_handler,
-    caliper_command, authnet_command_wrapper  # CAMBIATO DA tempest_command_wrapper
+    caliper_command, authnet_command_wrapper
 )
 from paypal_client import paypal_command
+from shopify1_client import s1_command  # NUOVO IMPORT
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -34,7 +35,8 @@ def main():
     application.add_handler(CommandHandler("chk", check_card_command))
     application.add_handler(CommandHandler("st5", stripe5_command))
     application.add_handler(CommandHandler("sh", shopify_command))
-    application.add_handler(CommandHandler("au", authnet_command_wrapper))  # CAMBIATO DA tempest_command_wrapper
+    application.add_handler(CommandHandler("s1", s1_command))  # NUOVO COMANDO
+    application.add_handler(CommandHandler("au", authnet_command_wrapper))
     application.add_handler(CommandHandler("paypal", paypal_command))
     application.add_handler(CommandHandler("crunchy", crunchyroll_command))
     application.add_handler(CommandHandler("bin", bin_command))
@@ -49,7 +51,7 @@ def main():
     
     application.add_error_handler(error_handler)
     
-    print("🤖 Bot started with AuthNet Gate and CaliperCovers commands...")
+    print("🤖 Bot started with Shopify $1 (EarthSim) command...")
     application.run_polling()
 
 if __name__ == '__main__':
